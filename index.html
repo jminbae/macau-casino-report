@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Chosen Palette: Warm Neutrals -->
-    <!-- Application Structure Plan: The application is designed as a top-to-bottom narrative scroll. It starts with a "hook" showing the dramatic outcome (GGR explosion), then introduces the timeline of change. It delves into the core "how" – the Integrated Resort (IR) model, presented as a clear diagram. This is followed by data-driven proof: interactive charts for GGR growth and market share shift. A direct strategic comparison between the old and new players clarifies the conflict. The application then synthesizes this into actionable business insights presented as digestible cards. Finally, it briefly touches on the broader impacts. This narrative structure is more engaging than a simple report summary, guiding the user from the "what" to the "how" and finally the "so what," making complex information highly digestible and user-friendly. -->
-    <!-- Visualization & Content Choices: 1. GGR Growth: A Line Chart (Chart.js) was chosen to best visualize the 'Change' over time, showing the explosive growth post-market opening. Interaction: Hover tooltips. 2. Market Share: A Donut Chart (Chart.js) effectively 'Compares' the composition of the market in a recent year, clearly showing the dominance of US-led firms. Interaction: Hover tooltips. 3. IR Model: A Diagram (HTML/CSS) was used to 'Organize' and explain this core concept visually without relying on SVG/Mermaid. It breaks down the components for easy understanding. 4. Strategy Comparison: An HTML Table is used to 'Compare' the key strategic differences between US firms and SJM, offering a clear, direct contrast. 5. Key Insights: Styled HTML cards are used to 'Organize' and present the final takeaways in a scannable, modular format. All visualizations are chosen to support the narrative flow and adhere to the no-SVG/Mermaid constraint. -->
+    <!-- Application Structure Plan: The application is designed as a top-to-bottom narrative scroll. It starts with a "hook" showing the dramatic outcome (GGR explosion), then introduces the timeline of change. It delves into the core "how" – the key strategies, presented as clear cards. This is followed by data-driven proof: interactive charts for GGR growth and market share shift. A direct strategic comparison between the old and new players clarifies the conflict. The application then synthesizes this into actionable business insights. This narrative structure is more engaging than a simple report summary, guiding the user from the "what" to the "how" and finally the "so what," making complex information highly digestible and user-friendly. -->
+    <!-- Visualization & Content Choices: 1. GGR Growth: A Line Chart (Chart.js) was chosen to best visualize the 'Change' over time. 2. Market Share: A Donut Chart (Chart.js) effectively 'Compares' market composition. 3. Core Strategies: A Grid of styled HTML cards is used to 'Organize' and explain the key success factors visually without relying on SVG/Mermaid. 4. Strategy Comparison: An HTML Table is used to 'Compare' the key strategic differences. 5. Key Insights: Styled HTML cards are used to 'Organize' and present takeaways. All visualizations are chosen to support the narrative flow and adhere to the no-SVG/Mermaid constraint. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <title>인터랙티브 리포트: 마카오 카지노 빅뱅</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -62,7 +62,7 @@
                 <div class="hidden md:flex space-x-8 text-gray-600">
                     <a href="#intro">도입</a>
                     <a href="#timeline">전환점</a>
-                    <a href="#ir-model">핵심 전략</a>
+                    <a href="#core-strategies">핵심 전략</a>
                     <a href="#data-proof">데이터 분석</a>
                     <a href="#insights">인사이트</a>
                 </div>
@@ -135,34 +135,32 @@
                 </div>
             </section>
 
-            <section id="ir-model">
+            <section id="core-strategies">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold section-title">핵심 전략: 통합 리조트(IR) 모델</h2>
-                    <p class="text-gray-600 max-w-2xl mx-auto mt-4">미국 자본의 성공은 단순한 카지노가 아닌, 모든 것을 갖춘 '목적지'를 창조한 데 있습니다. 이 혁신적인 비즈니스 모델이 바로 게임의 판도를 바꾼 핵심입니다.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold section-title">핵심 성공 전략</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto mt-4">미국 자본의 성공은 치밀하게 계획된 여러 전략의 조합이었습니다. 판도를 바꾼 네 가지 핵심 전략을 소개합니다.</p>
                 </div>
-                <div class="max-w-4xl mx-auto p-8 card rounded-lg">
-                    <div class="text-center mb-6">
-                        <h3 class="text-2xl font-bold text-gray-800">통합 리조트 (Integrated Resort)</h3>
-                        <p class="text-gray-500">카지노를 중심으로 모든 경험을 결합한 복합 공간</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div class="card p-6 rounded-lg">
+                        <div class="text-4xl mb-4">🏗️</div>
+                        <h3 class="font-bold text-xl mb-2">전략 1: 통합 리조트(IR) 모델</h3>
+                        <p class="text-gray-600">단순 도박장이 아닌 호텔, 쇼핑, MICE, 엔터테인먼트를 결합한 '복합 공간'을 제공하여 고객의 체류 시간과 소비를 극대화했습니다.</p>
                     </div>
-                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
-                        <div class="p-4 bg-gray-50 rounded-lg">
-                            <span class="text-4xl">🎲</span><p class="mt-2 font-semibold">카지노</p><p class="text-xs text-gray-500">핵심 수익원</p>
-                        </div>
-                         <div class="p-4 bg-gray-50 rounded-lg">
-                            <span class="text-4xl">🏨</span><p class="mt-2 font-semibold">호텔</p><p class="text-xs text-gray-500">체류 시간 증대</p>
-                        </div>
-                         <div class="p-4 bg-gray-50 rounded-lg">
-                            <span class="text-4xl">🛍️</span><p class="mt-2 font-semibold">쇼핑</p><p class="text-xs text-gray-500">비게임 수익 창출</p>
-                        </div>
-                         <div class="p-4 bg-gray-50 rounded-lg">
-                            <span class="text-4xl">💼</span><p class="mt-2 font-semibold">MICE</p><p class="text-xs text-gray-500">비즈니스 수요 창출</p>
-                        </div>
-                         <div class="p-4 bg-gray-50 rounded-lg">
-                            <span class="text-4xl">🎭</span><p class="mt-2 font-semibold">엔터테인먼트</p><p class="text-xs text-gray-500">가족 관광객 유치</p>
-                        </div>
+                     <div class="card p-6 rounded-lg">
+                        <div class="text-4xl mb-4">👨‍👩‍👧‍👦</div>
+                        <h3 class="font-bold text-xl mb-2">전략 2: 대중 시장(Mass Market) 공략</h3>
+                        <p class="text-gray-600">소수 VIP에 의존하던 기존 모델에서 벗어나, 폭발적으로 성장하는 중국 중산층과 가족 단위 관광객을 새로운 핵심 고객으로 삼았습니다.</p>
                     </div>
-                    <p class="text-center mt-8 text-gray-700">이 모든 요소가 시너지를 내며 방문객에게 완벽한 경험을 제공하고, 다양한 수익원을 창출하며, 리스크를 분산시키는 강력한 비즈니스 모델을 구축했습니다.</p>
+                     <div class="card p-6 rounded-lg">
+                        <div class="text-4xl mb-4">🚀</div>
+                        <h3 class="font-bold text-xl mb-2">전략 3: 과감한 선제적 투자</h3>
+                        <p class="text-gray-600">허허벌판이었던 코타이 지역의 미래 가치를 보고 수십억 달러를 선제적으로 투자하여 경쟁자들이 따라올 수 없는 규모의 경제를 구축했습니다.</p>
+                    </div>
+                     <div class="card p-6 rounded-lg">
+                        <div class="text-4xl mb-4">🗺️</div>
+                        <h3 class="font-bold text-xl mb-2">전략 4: '목적지' 자체의 창조</h3>
+                        <p class="text-gray-600">개별 리조트를 넘어 '코타이 스트립'이라는 새로운 관광 클러스터를 만들어, 마카오를 방문해야 할 이유 자체를 재정의했습니다.</p>
+                    </div>
                 </div>
             </section>
 
@@ -386,21 +384,26 @@
                 }
             });
 
-            const sections = document.querySelectorAll('main section');
+            const sections = document.querySelectorAll('main section, header');
             const navLinks = document.querySelectorAll('nav a[href^="#"]');
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         navLinks.forEach(link => {
-                            link.classList.toggle('active', link.getAttribute('href').substring(1) === entry.target.id);
+                            const linkHref = link.getAttribute('href');
+                            if (linkHref) {
+                                link.classList.toggle('active', linkHref.substring(1) === entry.target.id);
+                            }
                         });
                     }
                 });
-            }, { rootMargin: "-50% 0px -50% 0px" });
+            }, { rootMargin: "-40% 0px -60% 0px" });
 
             sections.forEach(section => {
-                observer.observe(section);
+                if(section.id) {
+                    observer.observe(section);
+                }
             });
         });
     </script>
