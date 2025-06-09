@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: The application is designed as a top-to-bottom narrative scroll. It starts with a "hook" showing the dramatic outcome (GGR explosion), then introduces the timeline of change. It delves into the core "how" – the Integrated Resort (IR) model, presented as a clear diagram. This is followed by data-driven proof: interactive charts for GGR growth and market share shift. A direct strategic comparison between the old and new players clarifies the conflict. The application then synthesizes this into actionable business insights presented as digestible cards. Finally, it briefly touches on the broader impacts. This narrative structure is more engaging than a simple report summary, guiding the user from the "what" to the "how" and finally the "so what," making complex information highly digestible and user-friendly. -->
+    <!-- Visualization & Content Choices: 1. GGR Growth: A Line Chart (Chart.js) was chosen to best visualize the 'Change' over time, showing the explosive growth post-market opening. Interaction: Hover tooltips. 2. Market Share: A Donut Chart (Chart.js) effectively 'Compares' the composition of the market in a recent year, clearly showing the dominance of US-led firms. Interaction: Hover tooltips. 3. IR Model: A Diagram (HTML/CSS) was used to 'Organize' and explain this core concept visually without relying on SVG/Mermaid. It breaks down the components for easy understanding. 4. Strategy Comparison: An HTML Table is used to 'Compare' the key strategic differences between US firms and SJM, offering a clear, direct contrast. 5. Key Insights: Styled HTML cards are used to 'Organize' and present the final takeaways in a scannable, modular format. All visualizations are chosen to support the narrative flow and adhere to the no-SVG/Mermaid constraint. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <title>인터랙티브 리포트: 마카오 카지노 빅뱅</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F8F5F2; /* Warm Neutral Base */
+            color: #333333;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+                max-height: 450px;
+            }
+        }
+        .section-title {
+            color: #4A5568; /* Subtle Accent */
+        }
+        .card {
+            background-color: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        nav a {
+            transition: color 0.3s;
+        }
+        nav a:hover, nav a.active {
+            color: #A0AEC0; /* Accent color for hover/active */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav id="navbar" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-xl font-bold section-title">마카오 리포트</div>
+                <div class="hidden md:flex space-x-8 text-gray-600">
+                    <a href="#intro">도입</a>
+                    <a href="#timeline">전환점</a>
+                    <a href="#ir-model">핵심 전략</a>
+                    <a href="#data-proof">데이터 분석</a>
+                    <a href="#insights">인사이트</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header id="intro" class="text-center py-16 md:py-24">
+            <h1 class="text-4xl md:text-6xl font-bold section-title mb-4">마카오 카지노 빅뱅</h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">미국 자본은 어떻게 40년 독점 체제를 넘어 세계 최대의 카지노 제국을 건설했는가?</p>
+            <div class="mt-12 p-8 bg-white rounded-lg shadow-lg max-w-4xl mx-auto">
+                <h2 class="text-2xl font-bold text-gray-700 mb-2">단 8년 만의 폭발적 성장</h2>
+                <p class="text-gray-500 mb-6">2002년 시장 개방 이후, 마카오의 카지노 총매출(GGR)은 경이로운 속도로 증가했습니다. 이는 새로운 시대의 서막을 알리는 신호탄이었습니다.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+                    <div class="text-center">
+                        <p class="text-gray-500">2002년 GGR</p>
+                        <p class="text-4xl font-bold text-gray-800">$27억</p>
+                    </div>
+                    <div class="text-4xl font-bold text-center text-gray-400">→</div>
+                    <div class="text-center">
+                        <p class="text-gray-500">2010년 GGR</p>
+                        <p class="text-4xl font-bold text-gray-800">$235억</p>
+                    </div>
+                </div>
+                <p class="mt-6 text-2xl md:text-4xl font-bold text-indigo-600">약 870% 성장</p>
+            </div>
+        </header>
+
+        <main class="space-y-20 md:space-y-32">
+
+            <section id="timeline">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold section-title">전환점: 운명을 바꾼 순간들</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto mt-4">40년 독점의 시대가 막을 내리고, 글로벌 경쟁의 시대가 열렸습니다. 마카오의 역사를 바꾼 결정적 사건들을 따라가 봅니다.</p>
+                </div>
+                <div class="relative max-w-4xl mx-auto">
+                    <div class="absolute left-1/2 w-1 h-full bg-gray-200 -translate-x-1/2"></div>
+                    <div class="relative space-y-12">
+                        <div class="flex md:justify-end md:pr-12 relative">
+                            <div class="md:w-5/12 p-6 card rounded-lg">
+                                <p class="absolute -left-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-indigo-500 text-white flex items-center justify-center font-bold">1</p>
+                                <h3 class="font-bold text-xl mb-2">1962년: 독점 시대의 개막</h3>
+                                <p class="text-gray-600 text-sm">스탠리 호의 STDM이 40년간의 카지노 독점 운영권을 획득하며, VIP 중심의 전통적 카지노 시대를 열었습니다.</p>
+                            </div>
+                        </div>
+                        <div class="flex md:justify-start md:pl-12 relative">
+                            <div class="md:w-5/12 p-6 card rounded-lg">
+                                <p class="absolute -right-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-indigo-500 text-white flex items-center justify-center font-bold">2</p>
+                                <h3 class="font-bold text-xl mb-2">2002년: 시장 개방</h3>
+                                <p class="text-gray-600 text-sm">마카오 정부가 카지노 시장을 전면 개방, 3개의 사업권을 부여하며 LVS, Wynn 등 미국 자본의 진출 길을 열었습니다.</p>
+                            </div>
+                        </div>
+                         <div class="flex md:justify-end md:pr-12 relative">
+                            <div class="md:w-5/12 p-6 card rounded-lg">
+                                <p class="absolute -left-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-indigo-500 text-white flex items-center justify-center font-bold">3</p>
+                                <h3 class="font-bold text-xl mb-2">2004년: 게임 체인저의 등장</h3>
+                                <p class="text-gray-600 text-sm">최초의 미국식 카지노 '샌즈 마카오'가 개장, 1년 만에 투자금을 회수하는 신화를 쓰며 시장에 충격을 주었습니다.</p>
+                            </div>
+                        </div>
+                         <div class="flex md:justify-start md:pl-12 relative">
+                            <div class="md:w-5/12 p-6 card rounded-lg">
+                                <p class="absolute -right-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-indigo-500 text-white flex items-center justify-center font-bold">4</p>
+                                <h3 class="font-bold text-xl mb-2">2007년: 코타이 시대 개막</h3>
+                                <p class="text-gray-600 text-sm">'베네시안 마카오'가 코타이 스트립에 문을 열며, 마카오를 도박 도시에서 종합 관광지로 변모시켰습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ir-model">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold section-title">핵심 전략: 통합 리조트(IR) 모델</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto mt-4">미국 자본의 성공은 단순한 카지노가 아닌, 모든 것을 갖춘 '목적지'를 창조한 데 있습니다. 이 혁신적인 비즈니스 모델이 바로 게임의 판도를 바꾼 핵심입니다.</p>
+                </div>
+                <div class="max-w-4xl mx-auto p-8 card rounded-lg">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-800">통합 리조트 (Integrated Resort)</h3>
+                        <p class="text-gray-500">카지노를 중심으로 모든 경험을 결합한 복합 공간</p>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <span class="text-4xl">🎲</span><p class="mt-2 font-semibold">카지노</p><p class="text-xs text-gray-500">핵심 수익원</p>
+                        </div>
+                         <div class="p-4 bg-gray-50 rounded-lg">
+                            <span class="text-4xl">🏨</span><p class="mt-2 font-semibold">호텔</p><p class="text-xs text-gray-500">체류 시간 증대</p>
+                        </div>
+                         <div class="p-4 bg-gray-50 rounded-lg">
+                            <span class="text-4xl">🛍️</span><p class="mt-2 font-semibold">쇼핑</p><p class="text-xs text-gray-500">비게임 수익 창출</p>
+                        </div>
+                         <div class="p-4 bg-gray-50 rounded-lg">
+                            <span class="text-4xl">💼</span><p class="mt-2 font-semibold">MICE</p><p class="text-xs text-gray-500">비즈니스 수요 창출</p>
+                        </div>
+                         <div class="p-4 bg-gray-50 rounded-lg">
+                            <span class="text-4xl">🎭</span><p class="mt-2 font-semibold">엔터테인먼트</p><p class="text-xs text-gray-500">가족 관광객 유치</p>
+                        </div>
+                    </div>
+                    <p class="text-center mt-8 text-gray-700">이 모든 요소가 시너지를 내며 방문객에게 완벽한 경험을 제공하고, 다양한 수익원을 창출하며, 리스크를 분산시키는 강력한 비즈니스 모델을 구축했습니다.</p>
+                </div>
+            </section>
+
+            <section id="data-proof">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold section-title">데이터로 증명된 성공</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto mt-4">숫자는 거짓말을 하지 않습니다. 시장 개방 이후 마카오의 성장과 시장 구도 변화를 통해 미국 자본의 압도적인 영향력을 확인해 보세요.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="card p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-center mb-4">마카오 GGR 성장 추이 (2002-2010)</h3>
+                        <p class="text-center text-gray-500 text-sm mb-4">미국식 카지노 개장과 함께 GGR이 수직 상승했습니다.</p>
+                        <div class="chart-container">
+                            <canvas id="ggrGrowthChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-center mb-4">시장 점유율 변화 (2023년)</h3>
+                        <p class="text-center text-gray-500 text-sm mb-4">미국계 기업들이 시장의 절반 이상을 장악했습니다.</p>
+                        <div class="chart-container">
+                            <canvas id="marketShareChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="strategy-comparison">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold section-title">거인들의 격돌: 전략 비교</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto mt-4">미국 자본의 혁신적인 공세와 기존 강자의 대응은 극명한 전략적 차이를 보여줍니다.</p>
+                </div>
+                 <div class="max-w-5xl mx-auto overflow-x-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-0.5 bg-gray-200">
+                        <div class="bg-gray-100 p-4 font-bold">전략 요소</div>
+                        <div class="bg-indigo-100 p-4 font-bold text-indigo-800">🇺🇸 미국식 IR 모델 (공격 & 혁신)</div>
+                        <div class="bg-gray-100 p-4 font-bold">🇲🇴 SJM 전통 모델 (방어 & 점진)</div>
+                        
+                        <div class="p-3 font-semibold bg-white">주요 타겟</div>
+                        <div class="p-3 bg-white">중국 본토 대중(Mass Market) & MICE</div>
+                        <div class="p-3 bg-white">전통적 VIP 고객 및 현지 시장</div>
+
+                        <div class="p-3 font-semibold bg-gray-50">거점</div>
+                        <div class="p-3 bg-gray-50">미개척지 '코타이 스트립' 선점 및 집중 개발</div>
+                        <div class="p-3 bg-gray-50">기존의 마카오 반도 중심 운영</div>
+
+                        <div class="p-3 font-semibold bg-white">모델</div>
+                        <div class="p-3 bg-white">대규모 통합 리조트 (IR), 목적지 창조</div>
+                        <div class="p-3 bg-white">카지노 중심, 위성 카지노 네트워크</div>
+
+                        <div class="p-3 font-semibold bg-gray-50">비게임 부문</div>
+                        <div class="p-3 bg-gray-50">적극적 투자로 수익 다각화 (쇼핑, 공연 등)</div>
+                        <div class="p-3 bg-gray-50">제한적, 후발적 투자로 경쟁력 약화</div>
+
+                        <div class="p-3 font-semibold bg-white">투자</div>
+                        <div class="p-3 bg-white">수십억 달러의 과감하고 선제적인 투자</div>
+                        <div class="p-3 bg-white">상대적으로 신중하고 느린 대응</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="insights">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold section-title">성공의 청사진: 비즈니스 인사이트</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto mt-4">마카오의 혁명은 모든 산업에 적용될 수 있는 강력한 교훈을 남겼습니다.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card p-6 rounded-lg">
+                        <h3 class="font-bold text-lg mb-2 text-indigo-700">1. 담대한 비전과 선점</h3>
+                        <p class="text-gray-600">미개척 시장에서 과감한 비전으로 판을 새로 짜는 것이 압도적인 경쟁 우위를 만듭니다.</p>
+                    </div>
+                    <div class="card p-6 rounded-lg">
+                        <h3 class="font-bold text-lg mb-2 text-indigo-700">2. 비즈니스 모델 혁신</h3>
+                        <p class="text-gray-600">단일 수익 모델에서 벗어나 다각화된 포트폴리오(IR)로 리스크를 분산하고 성장을 극대화합니다.</p>
+                    </div>
+                    <div class="card p-6 rounded-lg">
+                        <h3 class="font-bold text-lg mb-2 text-indigo-700">3. 고객 중심 전략</h3>
+                        <p class="text-gray-600">목표 고객(중국 중산층)의 니즈를 정확히 파악하고 맞춤형 경험을 제공하는 것이 성공의 핵심입니다.</p>
+                    </div>
+                    <div class="card p-6 rounded-lg">
+                        <h3 class="font-bold text-lg mb-2 text-indigo-700">4. 규모의 경제 창출</h3>
+                        <p class="text-gray-600">단일 시설을 넘어 '목적지' 자체를 창조하여 새로운 생태계를 구축하고 시장을 지배합니다.</p>
+                    </div>
+                    <div class="card p-6 rounded-lg">
+                        <h3 class="font-bold text-lg mb-2 text-indigo-700">5. 글로벌 모델의 현지화</h3>
+                        <p class="text-gray-600">성공적인 글로벌 모델(라스베이거스)을 현지 시장(마카오) 특성에 맞게 적용하고 발전시킵니다.</p>
+                    </div>
+                    <div class="card p-6 rounded-lg">
+                        <h3 class="font-bold text-lg mb-2 text-indigo-700">6. 역사적 지배력은 없다</h3>
+                        <p class="text-gray-600">기존 강자도 혁신적인 가치 제안 앞에서는 견고한 방어막이 될 수 없음을 증명했습니다.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center py-12 mt-16 border-t border-gray-200">
+            <p class="text-gray-500">본 인터랙티브 리포트는 제공된 '마카오 카지노, 미국 자본 성공 분석' 보고서를 기반으로 제작되었습니다.</p>
+            <p class="text-sm text-gray-400 mt-2">Interactive Application by Canvas AI.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const wrapLabel = (label, maxWidth) => {
+                if (typeof label !== 'string' || label.length <= maxWidth) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > maxWidth && currentLine.length > 0) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                }
+                if (currentLine) {
+                    lines.push(currentLine);
+                }
+                return lines;
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+            
+            const tooltipConfig = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            };
+            
+            const ggrGrowthData = {
+                labels: ['2002', '2004', '2006', '2008', '2010'],
+                datasets: [{
+                    label: '마카오 GGR (십억 달러)',
+                    data: [2.7, 5.0, 7.0, 13.6, 23.5],
+                    borderColor: '#4F46E5',
+                    backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#4F46E5'
+                }]
+            };
+
+            const ggrGrowthCtx = document.getElementById('ggrGrowthChart').getContext('2d');
+            new Chart(ggrGrowthCtx, {
+                type: 'line',
+                data: ggrGrowthData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: '매출 (십억 달러)' },
+                        },
+                        x: {
+                            title: { display: true, text: '연도' }
+                        }
+                    },
+                    ...tooltipConfig
+                }
+            });
+
+            const marketShareData = {
+                labels: [
+                    wrapLabel('Sands China (미국)', 16),
+                    wrapLabel('MGM China (미국 합작)', 16),
+                    wrapLabel('Wynn Macau (미국)', 16),
+                    wrapLabel('Galaxy Ent. (홍콩)', 16),
+                    wrapLabel('Melco Resorts (합작)', 16),
+                    wrapLabel('SJM Holdings (마카오)', 16)
+                ],
+                datasets: [{
+                    label: '시장 점유율',
+                    data: [26.6, 15.3, 13.4, 18.2, 14.4, 12.1], // Data from report
+                    backgroundColor: ['#4338CA', '#6366F1', '#818CF8', '#A5B4FC', '#C7D2FE', '#E0E7FF'],
+                    borderColor: '#FFFFFF',
+                    hoverOffset: 8
+                }]
+            };
+
+            const marketShareCtx = document.getElementById('marketShareChart').getContext('2d');
+            new Chart(marketShareCtx, {
+                type: 'doughnut',
+                data: marketShareData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback,
+                                label: function(context) {
+                                    let label = Array.isArray(context.label) ? context.label.join(' ') : context.label;
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const sections = document.querySelectorAll('main section');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href').substring(1) === entry.target.id);
+                        });
+                    }
+                });
+            }, { rootMargin: "-50% 0px -50% 0px" });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
